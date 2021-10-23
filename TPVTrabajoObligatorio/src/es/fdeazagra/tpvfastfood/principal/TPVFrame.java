@@ -105,7 +105,10 @@ public class TPVFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 204));
+        setMaximumSize(new java.awt.Dimension(1280, 740));
         setMinimumSize(new java.awt.Dimension(900, 500));
+        setPreferredSize(new java.awt.Dimension(1280, 740));
+        setResizable(false);
 
         panelEtiquetasNorte.setBackground(new java.awt.Color(185, 224, 185));
         panelEtiquetasNorte.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -234,7 +237,6 @@ public class TPVFrame extends javax.swing.JFrame {
         jScrollPane1.setEnabled(false);
         jScrollPane1.setFocusable(false);
         jScrollPane1.setPreferredSize(new java.awt.Dimension(350, 255));
-        jScrollPane1.setViewportView(tblTabla);
 
         tblTabla.setAutoCreateRowSorter(true);
         tblTabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -367,9 +369,9 @@ public class TPVFrame extends javax.swing.JFrame {
 
         panelBotonesSur.setBackground(new java.awt.Color(185, 224, 185));
         panelBotonesSur.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        panelBotonesSur.setMinimumSize(new java.awt.Dimension(900, 50));
-        panelBotonesSur.setPreferredSize(new java.awt.Dimension(1200, 70));
-        panelBotonesSur.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 20));
+        panelBotonesSur.setMinimumSize(new java.awt.Dimension(900, 40));
+        panelBotonesSur.setPreferredSize(new java.awt.Dimension(1200, 40));
+        panelBotonesSur.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 10, 3));
 
         btnCorregir.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
         btnCorregir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/es/fdeazagra/tpvfastfood/principal/corregir.png"))); // NOI18N

@@ -64,38 +64,52 @@ public class ServiceCliente {
             String telefono = panel.getTxtTelefono().getText();
             String email = panel.getTxtEmail().getText();
             
-             if(!("".equals(nombre) | "".equals(apellido1)| "".equals(apellido2) 
-                     | "".equals(telefono) | "".equals(email))){
-                 
-                // Llamamos al método que establece la conexión a MySQL
+            // Llamamos al método que establece la conexión a MySQL
                 connection = GestionSql.openConnection();
+            
+            // Comprobamos que el teléfono no existe en la BBDD    
+            String sql = ("SELECT cliente.telefono"
+                    + " FROM Cliente WHERE telefono = '"+telefono+"'");
+            Statement st = connection.createStatement();
+            ResultSet rs = st.executeQuery(sql);
 
-                // Creamos la sentencia SQL para insertar los datos obtenidos.
-                String sql = "INSERT INTO Cliente (nombre, apellido1, apellido2,"
-                        + " telefono, email) VALUES ( ?, ?, ?, ?, ?)";
-                PreparedStatement ps = connection.prepareStatement(sql);
+            if (rs.next() != false) {
+                
+                JOptionPane.showMessageDialog(null,"Ese número de teléfono ya existe");
+                
+            } else {
+                        
+                if(!("".equals(nombre) | "".equals(apellido1)| "".equals(apellido2) 
+                         | "".equals(telefono) | "".equals(email))){
 
-                ps.setString(1, nombre);
-                ps.setString(2, apellido1);
-                ps.setString(3, apellido2);
-                ps.setString(4, telefono);
-                ps.setString(5, email);
+                    // Creamos la sentencia SQL para insertar los datos obtenidos.
+                    sql = "INSERT INTO Cliente (nombre, apellido1, apellido2,"
+                            + " telefono, email) VALUES ( ?, ?, ?, ?, ?)";
+                    PreparedStatement ps = connection.prepareStatement(sql);
 
-                int result = ps.executeUpdate();
+                    ps.setString(1, nombre);
+                    ps.setString(2, apellido1);
+                    ps.setString(3, apellido2);
+                    ps.setString(4, telefono);
+                    ps.setString(5, email);
 
-                // Comprobamos que se han insertado correctamente
-                if(result == 1) {
-                    JOptionPane.showMessageDialog(null, "Cliente guardado");
+                    int result = ps.executeUpdate();
+
+                    // Comprobamos que se han insertado correctamente
+                    if(result == 1) {
+                        JOptionPane.showMessageDialog(null, "Cliente guardado");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+                    }
+
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ha ocurrido un error");
+
+                     JOptionPane.showMessageDialog(null,"Rellene todos los campos");
+
                 }
-                 
-                 
-             } else {
-                 
-                 JOptionPane.showMessageDialog(null,"Rellene todos los campos");
-                 
-             }
+                
+            } 
            
         } catch (SQLException e) {
             e.printStackTrace();

@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
  */
 public class GestionSql {
     
-    private static final String MYSQL_DB = "jdbc:mysql://localhost:3306/TPV_Burger";
+    private static final String MYSQL_DB = "jdbc:mysql://localhost:3306/tpv_burger";
     private static final String MYSQL_USER = "root";
     private static final String MYSQL_PASSWORD = "";
     public static Connection connection = null;

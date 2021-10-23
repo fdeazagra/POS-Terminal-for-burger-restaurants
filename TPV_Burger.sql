@@ -1,26 +1,33 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost:3306
--- Tiempo de generación: 21-01-2021 a las 22:37:38
--- Versión del servidor: 5.7.26
--- Versión de PHP: 7.4.2
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 23-10-2021 a las 14:14:35
+-- Versión del servidor: 10.4.17-MariaDB
+-- Versión de PHP: 8.0.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Base de datos: `TPV_Burger`
+-- Base de datos: `tpv_burger`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Cliente`
+-- Estructura de tabla para la tabla `cliente`
 --
 
-CREATE TABLE `Cliente` (
+CREATE TABLE `cliente` (
   `Id` int(10) NOT NULL,
   `nombre` varchar(45) NOT NULL,
   `apellido1` varchar(45) NOT NULL,
@@ -30,25 +37,28 @@ CREATE TABLE `Cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `Cliente`
+-- Volcado de datos para la tabla `cliente`
 --
 
-INSERT INTO `Cliente` (`Id`, `nombre`, `apellido1`, `apellido2`, `telefono`, `email`) VALUES
+INSERT INTO `cliente` (`Id`, `nombre`, `apellido1`, `apellido2`, `telefono`, `email`) VALUES
 (1, 'sin registro', '-', '-', '-', '-'),
 (18, 'Eduardo', 'Lahuerta', 'Frías', '976000072', 'edu@yahoo.es'),
-(19, 'Juanjo', 'Fernández', 'Laborda', '975362145', 'juanjo@hotmail.es'),
+(19, 'Juanjo', 'Fernández', 'Lacuesta', '975362140', 'juanjo@hotmail.es'),
 (20, 'Santiago', 'Frisas', 'Calanda', '976976976', 'santi@gmail.com'),
 (21, 'Adrian', 'Puertas', 'Ramírez', '974147852', 'adrian@outlook.es'),
 (22, 'Carmen', 'Comet', 'Gabás', '978978978', 'carmen@gmail.com'),
-(25, 'Ana', 'Pinilla', 'Garralaga', '976258963', 'ana@hotmail.com');
+(25, 'Ana', 'García', 'Garralaga', '976258963', 'ana@hotmail.com'),
+(26, 'Alberto', 'Minguez', 'Escobar', '974974974', 'alberto@yahoo.com'),
+(31, 'Rodrigo', 'Sanz', 'Corredor', '976123456', 'rodrigo@outlook.es'),
+(32, 'Fernando', 'Gómez', 'Heras', '975975975', 'fernando@gmail.com');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `Ticket`
+-- Estructura de tabla para la tabla `ticket`
 --
 
-CREATE TABLE `Ticket` (
+CREATE TABLE `ticket` (
   `id` int(10) NOT NULL,
   `id_cliente` int(10) DEFAULT NULL,
   `productos` varchar(400) NOT NULL,
@@ -58,10 +68,10 @@ CREATE TABLE `Ticket` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Volcado de datos para la tabla `Ticket`
+-- Volcado de datos para la tabla `ticket`
 --
 
-INSERT INTO `Ticket` (`id`, `id_cliente`, `productos`, `fecha`, `hora`, `total`) VALUES
+INSERT INTO `ticket` (`id`, `id_cliente`, `productos`, `fecha`, `hora`, `total`) VALUES
 (7, 18, '\nHamburguesa sencilla   4.0 €\nHamburguesa con queso   4.5 €\nVino joven   2.0 €\nCaña cerveza   2.0 €\n', '18/01/2021', '22:31:52', 12.5),
 (8, 18, '\nMenú nº3   7.5 €\nMenú nº4   8.5 €\nTarta chocolate   4.0 €\ndescuento cliente 10%   -2.0 €\nMenú nº3   7.5 €\nMenú nº6   8.5 €\n', '18/01/2021', '22:35:15', 34.0),
 (9, 19, '\nMenú nº1   8.5 €\nMenú nº2   9.5 €\n', '18/01/2021', '23:01:22', 18.0),
@@ -82,22 +92,26 @@ INSERT INTO `Ticket` (`id`, `id_cliente`, `productos`, `fecha`, `hora`, `total`)
 (33, 25, '\nMenú nº4   8.5 €\nHamburguesa con bacon   4.5 €\nEnsalada mediterranea   5.5 €\nHelado sabores   2.5 €\nVino joven   2.0 €\nAgua   1.5 €\n', '21/01/2021', '23:13:43', 24.5),
 (34, 1, '\nHamburguesa doble   6.0 €\nHamburguesa vegana   4.5 €\nCaña cerveza   2.0 €\nCaña cerveza   2.0 €\n', '21/01/2021', '23:15:14', 14.5),
 (35, 21, '\nHamburguesa con queso   4.5 €\nHamburguesa doble   6.0 €\nPatatas fritas   2.5 €\nTarta chocolate   4.0 €\nCaña cerveza   2.0 €\nCaña cerveza sin alcohol   2.0 €\nCafé   1.5 €\nInfusión   1.5 €\ndescuento cliente 10%   -2.4 €\n', '21/01/2021', '23:17:13', 21.6),
-(36, 22, '\nMenú nº1   8.5 €\nHamburguesa vegana   4.5 €\nAlitas de pollo   3.5 €\nRefresco   2.5 €\nBatido   2.0 €\n', '21/01/2021', '23:19:08', 21.0);
+(36, 22, '\nMenú nº1   8.5 €\nHamburguesa vegana   4.5 €\nAlitas de pollo   3.5 €\nRefresco   2.5 €\nBatido   2.0 €\n', '21/01/2021', '23:19:08', 21.0),
+(37, 1, '\nHamburguesa con bacon   4.5 €\nHamburguesa doble   6.0 €\nPatatas fritas   2.5 €\nCaña cerveza   2.0 €\nCaña cerveza   2.0 €\n', '23/10/2021', '14:01:10', 17.0),
+(38, 32, '\nHamburguesa con bacon   4.5 €\nHamburguesa doble   6.0 €\nEnsalada mediterranea   5.5 €\nVino joven   2.0 €\nRefresco   2.5 €\n', '23/10/2021', '14:02:15', 20.5),
+(39, 31, '\nMenú nº3   7.5 €\nHamburguesa vegana   4.5 €\nVino joven   2.0 €\n', '23/10/2021', '14:03:12', 14.0);
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `Cliente`
+-- Indices de la tabla `cliente`
 --
-ALTER TABLE `Cliente`
-  ADD PRIMARY KEY (`Id`);
+ALTER TABLE `cliente`
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `telefono` (`telefono`);
 
 --
--- Indices de la tabla `Ticket`
+-- Indices de la tabla `ticket`
 --
-ALTER TABLE `Ticket`
+ALTER TABLE `ticket`
   ADD PRIMARY KEY (`id`),
   ADD KEY `FK_TICKET` (`id_cliente`);
 
@@ -106,23 +120,28 @@ ALTER TABLE `Ticket`
 --
 
 --
--- AUTO_INCREMENT de la tabla `Cliente`
+-- AUTO_INCREMENT de la tabla `cliente`
 --
-ALTER TABLE `Cliente`
-  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+ALTER TABLE `cliente`
+  MODIFY `Id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT de la tabla `Ticket`
+-- AUTO_INCREMENT de la tabla `ticket`
 --
-ALTER TABLE `Ticket`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+ALTER TABLE `ticket`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `Ticket`
+-- Filtros para la tabla `ticket`
 --
-ALTER TABLE `Ticket`
-  ADD CONSTRAINT `FK_TICKET` FOREIGN KEY (`id_cliente`) REFERENCES `Cliente` (`Id`);
+ALTER TABLE `ticket`
+  ADD CONSTRAINT `FK_TICKET` FOREIGN KEY (`id_cliente`) REFERENCES `cliente` (`Id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
