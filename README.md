@@ -24,5 +24,11 @@
   
 ## Database:
 
-  The database contains 2 tables, one for customer registration and the other for order tickets.
+  The database contains 2 tables: One for order tickets "ticket", and the other for customer registration "cliente".
+  
+  ![Tables](https://github.com/fdeazagra/POS-Terminal-for-burger-restaurants/blob/master/Imagenes/tables.jpg)
+  
+## Screenshot:
+
+![screenshot](https://github.com/fdeazagra/POS-Terminal-for-burger-restaurants/blob/master/Imagenes/screenshot.jpg)
 
